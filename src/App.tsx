@@ -2,9 +2,16 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { ComplianceModal } from './components/ComplianceModal'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [showCompliance, setShowCompliance] = useState(false)
+
+  const handleAccept = () => {
+    setShowCompliance(false)
+    // Add any additional logic after acceptance
+  }
 
   return (
     <>
@@ -21,6 +28,12 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button 
+          onClick={() => setShowCompliance(true)}
+          className="ml-4"
+        >
+          Open Compliance Modal
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -28,6 +41,12 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <ComplianceModal 
+        isOpen={showCompliance}
+        onClose={() => setShowCompliance(false)}
+        onAccept={handleAccept}
+      />
     </>
   )
 }
