@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FAQ Schema",
+  "description": "Schema for frequently asked questions and answers",
+  "type": "object",
+  "properties": {
+    "faqs": {
+      "type": "array",
+      "description": "List of FAQ items",
+      "items": {
+        "type": "object",
+        "required": ["question", "answer", "category"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the FAQ"
+          },
+          "question": {
+            "type": "string",
+            "description": "The frequently asked question"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the question"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category or topic of the FAQ",
+            "enum": ["general", "account", "billing", "technical", "security"]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Related tags for the FAQ"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          }
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "description": "List of available FAQ categories",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Category identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the category"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the category"
+          }
+        }
+      }
+    }
+  },
+  "required": ["faqs", "categories"]
+}
